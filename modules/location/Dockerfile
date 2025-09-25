@@ -1,6 +1,6 @@
 FROM python:3.12-alpine
 
-RUN apk add --no-cache build-base gcc musl-dev linux-headers geos libc-dev postgresql-dev postgresql-client python3-dev
+RUN apk add --no-cache build-base gcc musl-dev linux-headers geos libc-dev postgresql-dev postgresql-client python3-dev py3-shapely
 
 WORKDIR /app
 
