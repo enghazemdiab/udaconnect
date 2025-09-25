@@ -1,10 +1,11 @@
 FROM python:3.12-alpine
 
-WORKDIR .
-
 RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev libffi-dev libpq python3-dev build-base
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
