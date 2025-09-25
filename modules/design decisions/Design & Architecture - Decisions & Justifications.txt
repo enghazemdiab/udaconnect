@@ -1,0 +1,19 @@
+Moving from monolothic to microservices, the candidates are 3 services: Person, Location and Connection. 
+
+Person: It is separated to encapsulate the user details and its profile management. Being a microservice allow it to be independent and scaled as per need for user-related functions.
+
+Location: It is separated to handle the geospatial data ingestion. Again, this supports scalability for this module especially that location data by nature can be grown very quickly. Accordingly, having it as a separate microservice can help to optimize and scale independentaly from other modules which allow us to achieve our performance needs and eliminate effect on other services.
+
+Connection: As a separate function to mainly handle the calculation of proximity relationship between users, this is also a candidate for refactor into a microservice. It consumes location data and inquire person data, which make it a 3rd microservice that deals with the other two.
+
+The details above depict how the maintainability can be improved by modernizing our application into microservice which facilitate scaling and future enhancements as well without impacting each other.
+
+For message passing techniques, below is a description of the selected usage for the 3 Kafka, gRPC, and REST:
+
+Kafka: The clear use case is to stream location data which will be published by Location microservice and consumed by Connection microservice. Such event-driven approach is important to handle high volume anticipated of this geospatial data in async real time approach. It is also aligned with our architecture to decouble both services along with supporting scalability to handle higher demand if needed.
+
+gRPC: This is used in our use case for the internal communications between microservices which in our case the Connection and Person microservics. As per one of its main benefits, having structured message fpr such service-to-service interactions is main benefit from using this type of messaging technique.
+
+REST: Here we will use REST APIs as it is already used mainly for the exposure to the external world which is in our case the frontend application.
+
+The justification above is aligned with the goals needed as we are achieving cost reduction by segregating different modules (microservices & messaging techniques) that will allow us for reducing development time and cost by increasing the maintainability of the code. Still, all solution and microservices will run on k8s to have the contranization architecture followed. Lastly, as scalability was main factor in almost all justifications above, the solution is designed to be scalable and able to handle ingress of a large volume of data.
