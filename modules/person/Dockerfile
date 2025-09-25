@@ -5,7 +5,7 @@ RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev l
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -v -r requirements.txt
 
 EXPOSE 5000
 
