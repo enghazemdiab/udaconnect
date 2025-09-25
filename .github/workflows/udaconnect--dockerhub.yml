@@ -1,5 +1,4 @@
-name: Udaconnect - Package with Docker
-
+name: Udaconnect - Push to Dockerhub
 on:
   push:
     branches: [ master ]
@@ -7,8 +6,15 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - person
+          - location
+          - connection
+          - frontend
 
     steps:
       - name: Checkout code
@@ -26,11 +32,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push ${{ matrix.service }} image
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./modules/${{ matrix.service }}
+          file: ./modules/${{ matrix.service }}/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: hazemdiab/udaconnect:latest
+          tags: hazemdiab/udaconnect-${{ matrix.service }}:latest
