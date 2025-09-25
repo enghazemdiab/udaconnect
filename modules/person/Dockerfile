@@ -1,6 +1,6 @@
 FROM python:3.11-slim-bullseye
 
-RUN apt-get update && apt-get install -y build-essential libpq-dev gcc python3-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libpq-dev postgresql-client gcc python3-dev && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
