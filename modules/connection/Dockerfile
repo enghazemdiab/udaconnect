@@ -2,8 +2,7 @@ FROM python:3.12-alpine
 
 WORKDIR .
 
-RUN apk update && apk add --no-cache gcc musl-dev libffi-dev libpq postgresql-dev python3-dev build-base
-RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev
+RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev libffi-dev libpq python3-dev build-base
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
