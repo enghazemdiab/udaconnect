@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y build-essential libpq-dev gcc python3-d
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt --verbose
 
 EXPOSE 5000
 
