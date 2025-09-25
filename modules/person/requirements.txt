@@ -11,9 +11,9 @@ GeoAlchemy2==0.8.4
 grpcio==1.62.1
 grpcio-tools==1.62.1
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 jsonschema==3.0.2
-MarkupSafe==1.1.1
+MarkupSafe==2.0.1
 marshmallow==3.7.1
 marshmallow-sqlalchemy==0.23.1
 psycopg2==2.9.9
