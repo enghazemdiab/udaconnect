@@ -1,6 +1,6 @@
-FROM python:3.12-alpine
+FROM python:3.12-slim-bullseye
 
-RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev libffi-dev libpq python3-dev build-base
+RUN apt-get update && apt-get install -y build-essential libpq-dev gcc python3-dev && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
